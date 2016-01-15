@@ -1,0 +1,17 @@
+{
+  "name": "node-request-validator",
+  "version": "0.0.1",
+  "description": "Utility functions for request validation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "validation",
+    "validator",
+    "requests",
+    "express"
+  ],
+  "author": "Netto Farah",
+  "license": "ISC"
+}
