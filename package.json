@@ -4,7 +4,7 @@
   "description": "Utility functions for request validation.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha test/"
   },
   "keywords": [
     "validation",
@@ -13,5 +13,12 @@
     "express"
   ],
   "author": "Netto Farah",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0",
+    "validator": "^4.5.0"
+  }
 }
