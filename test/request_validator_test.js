@@ -3,28 +3,25 @@ var validator = require('../index')
 
 var email = validator.email;
 var presence = validator.presence;
-var validateParams = validator.validateParams;
+var validate = validator.validate;
 
 describe('Request validation', function() {
 
-  describe('Params', function() {
-
-    var req;
+  describe('Regular Validation', function() {
+    var params;
 
     before(function() {
-      req = {
-        params: {}
-      }
+      params = {}
     });
 
     it('runs validations on the request params', function() {
-      req.params = {
+      params = {
         login: 'nettofarah',
         password: 'secret',
         email: 'nettofarah@gmail.com'
       };
 
-      var validation = validateParams(req, [
+      var validation = validate(params, [
         presence('login'),
         presence('password'),
         email('email')
@@ -38,12 +35,12 @@ describe('Request validation', function() {
       var validation;
 
       before(function() {
-        req.params = {
+        params = {
           login: 'nettofarah',
           email: 'nettofarahatgmail.com'
         };
 
-        validation = validateParams(req, [
+        validation = validate(params, [
           presence('login'),
           presence('password'),
           email('email')
