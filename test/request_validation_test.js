@@ -84,6 +84,7 @@ function validation(title, validateFunction, property) {
 validation('Body Validation', validator.validateBody, 'body');
 validation('Params Validation', validator.validateParams, 'params');
 validation('Query String Validation', validator.validateQuery, 'query');
+validation('Headers Validation', validator.validateHeaders, 'headers');
 
 describe('Validate all', function() {
 
