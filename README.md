@@ -18,6 +18,7 @@ import express from 'express';
 import { assertAll, presence, email, middleware } from 'node-request-validator';
 
 const app = express();
+
 app.get('/hello', function(req, res){
   assertAll(req, [
     presence('username'),
@@ -40,10 +41,10 @@ const presenceValidator = presence('username');
 const emailValidator = email('email_address');
 
 console.log(presenceValidator({ username: 'nettofarah' }));
-=> { field: 'username', message: 'username required', result: true }
+// { field: 'username', message: 'username required', result: true }
 
 console.log(emailValidator({ email_address: 'nettofarahatgmail.com' }));
-=> { field: 'email_address', message: 'email_address should look like an email address', result: false }
+// { field: 'email_address', message: 'email_address should look like an email address', result: false }
 ```
 Check out the [#](complete list of supported validation functions).
 
@@ -108,6 +109,24 @@ app.post('/sign-up', function(req, res){
     res.status(200).send('Welcome!');
   } else {
     res.status(422).send({ errors: validation.errors });
+  }
+});
+```
+
+#### Headers
+```javascript
+import { validateHeaders, presence, format } from 'node-request-validator';
+
+app.get('/secret-stuff', function(req, res){
+  const validation = validateHeaders(req, [
+    presence('Authorization'),
+    format('Authorization', /Token token="\w+"/)
+  ]);
+
+  if (validation.valid) {
+    res.status(200).send('Here is all your secret stuff!');
+  } else {
+    res.status(401).send('You shall not pass!');
   }
 });
 ```
