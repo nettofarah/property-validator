@@ -46,7 +46,7 @@ console.log(presenceValidator({ username: 'nettofarah' }));
 console.log(emailValidator({ email_address: 'nettofarahatgmail.com' }));
 // { field: 'email_address', message: 'email_address should look like an email address', result: false }
 ```
-Check out the [#](complete list of supported validation functions).
+Check out the [complete list of supported validation functions](#).
 
 ### Request Validation
 node-request-validator offers out of the box support for request params, query
