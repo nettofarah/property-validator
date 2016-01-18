@@ -31,23 +31,6 @@ app.get('/hello', function(req, res){
 app.use(middleware);
 ```
 
-### Validation Helpers
-Validation helpers are functions you can use to validate incoming request properties.
-
-```javascript
-import { presence, email  } from 'node-request-validator';
-
-const presenceValidator = presence('username');
-const emailValidator = email('email_address');
-
-console.log(presenceValidator({ username: 'nettofarah' }));
-// { field: 'username', message: 'username required', result: true }
-
-console.log(emailValidator({ email_address: 'nettofarahatgmail.com' }));
-// { field: 'email_address', message: 'email_address should look like an email address', result: false }
-```
-Check out the [complete list of supported validation functions](#).
-
 ### Request Validation
 node-request-validator offers out of the box support for request params, query
 string, body and header validations.
@@ -130,3 +113,23 @@ app.get('/secret-stuff', function(req, res){
   }
 });
 ```
+
+#### Everything
+You can use `validateAll` to run validation rules against all properties at once (`body`, `params`, `query` and `headers`).
+
+### Validation Helpers
+Validation helpers are functions you can use to validate incoming request properties.
+
+```javascript
+import { presence, email  } from 'node-request-validator';
+
+const presenceValidator = presence('username');
+const emailValidator = email('email_address');
+
+console.log(presenceValidator({ username: 'nettofarah' }));
+// { field: 'username', message: 'username required', result: true }
+
+console.log(emailValidator({ email_address: 'nettofarahatgmail.com' }));
+// { field: 'email_address', message: 'email_address should look like an email address', result: false }
+```
+Check out the [complete list of supported validation functions](#).
