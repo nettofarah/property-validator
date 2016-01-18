@@ -12,6 +12,15 @@ npm install --save node-request-validator
 ```
 
 ## Usage
+node-request-validator provides a suite of `validate` and `assert` functions to make request validation simple and easy to write.
+
+`assert` functions halt the request handler's exection if one of the validation rules breaks.
+
+`validate` functions on the other hand, will return an object that you can query containing the result of all validations.
+
+You can run validations and assertions against the request `body`, `query`, `params` and `headers`, or against all of them at once using `assertAll` or `validateAll`.
+
+Here's how to validate a request:
 
 ```javascript
 import express from 'express';
