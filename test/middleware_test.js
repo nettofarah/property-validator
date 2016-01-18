@@ -22,6 +22,11 @@ describe('Validation Middleware', function() {
     res.status(200).json({ name: req.query.username });
   });
 
+  app.get('/broken', function() {
+    throw new Error('something unrelated');
+    res.status(200);
+  });
+
   app.use(middleware);
 
   it('sends the appropriate response code', function(done) {
@@ -58,6 +63,11 @@ describe('Validation Middleware', function() {
   it('does not intercept valid requests', function(done) {
     var response = request(app).get('/hello?username=netto&email_address=nettofarah@gmail.com');
     response.expect(200, { name: 'netto' }, done);
+  });
+
+  it('does not intercept unrelated errors', function(done) {
+    var response = request(app).get('/broken');
+    response.expect(500, done);
   });
 });
 
