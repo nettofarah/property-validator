@@ -187,6 +187,55 @@ app.get('/secret-stuff', function(req, res){
 You can use `validateAll` or `assertAll` to run validation rules against all properties at once (`body`, `params`, `query`).
 Important: `validateAll` and `assertAll` will not run validations agains `headers` since they're pretty different use cases.
 
+### Assert Middleware
+node-request-validator ships with a standard middleware that automatically handles assert errors.
+All you have to do is to import `assertMiddleware` and mount it after all request handlers in your express app.
+
+```javascript
+import express from 'express';
+import { assertAll, presence, email, assertMiddleware } from 'node-request-validator';
+
+const app = express();
+
+app.get('/hello', function(req, res){
+  assertAll(req, [
+    presence('username'),
+    email('email_address')
+  ]);
+
+  res.status(200).json({ name: req.query.username });
+});
+
+app.post('/bla', ...);
+...
+
+app.get('/test', ...);
+
+app.use(assertMiddleware);
+```
+
+You can also roll your own middleware in case you need any sort of customization.
+
+```javascript
+import { ValidationError } from 'node-request-validator';
+
+app.use(function(err, req, res, next) {
+  // Do not swallow all kinds of errors
+  const isValidationError = (err instanceof ValidationError);
+  if (!isValidationError) {
+    return next(err);
+  }
+
+  const messages = err.messages;
+  res.status(422);
+  
+  res.json({
+    notice: "Your request is invalid",
+    errors: messages
+  })
+});
+```
+
 ### Validation Helpers
 Validation helpers are functions you can use to validate incoming request properties.
 
