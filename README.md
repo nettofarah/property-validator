@@ -14,9 +14,9 @@ npm install --save node-request-validator
 ## Usage
 node-request-validator provides a suite of `validate` and `assert` functions to make request validation simple and easy to write.
 
-`assert` functions halt the request handler's exection if one of the validation rules breaks.
+`assert` functions halt the request handler's execution if one of the validation rules breaks.
 
-`validate` functions on the other hand, will return an object that you can query containing the result of all validations.
+`validate` functions on the other hand, will return an object containing the result of all validations.
 
 You can run validations and assertions against the request `body`, `query`, `params` and `headers`, or against all of them at once using `assertAll` or `validateAll`.
 
@@ -67,6 +67,20 @@ app.get('/hello/:username', function(req, res){
 });
 ```
 
+or use the `assertParams` counterpart:
+```javascript
+import { assertParams, presence } from 'node-request-validator';
+
+app.get('/hello/:username', function(req, res){
+  assertParams(req, [
+    presence('username')
+  ]);
+
+  // No need to check the validation result
+  res.status(200).json({ name: req.query.username });
+});
+```
+
 #### Query String
 
 ```javascript
@@ -85,13 +99,27 @@ app.get('/hi', function(req, res){
 });
 ```
 
+or use the `assertQuery` counterpart:
+```javascript
+import { assertQuery, email } from 'node-request-validator';
+
+app.get('/hi', function(req, res){
+  assertQuery(req, [
+    email('primary_email_address')
+  ]);
+
+  // No need to check the validation result
+  res.status(200).send('We promise not to send spam!');
+});
+```
+
 #### Body
 
 ```javascript
 import { validateBody, presence, email } from 'node-request-validator';
 
 app.post('/sign-up', function(req, res){
-  const validation = validateQuery(req, [
+  const validation = validateBody(req, [
     email('user.email'),
     presence('user.password'),
     presence('user.password_confirmation')
@@ -102,6 +130,22 @@ app.post('/sign-up', function(req, res){
   } else {
     res.status(422).send({ errors: validation.errors });
   }
+});
+```
+or use the `assertBody` counterpart:
+
+```javascript
+import { assertBody, presence, email } from 'node-request-validator';
+
+app.post('/sign-up', function(req, res){
+  assertBody(req, [
+    email('user.email'),
+    presence('user.password'),
+    presence('user.password_confirmation')
+  ]);
+
+  // No need to check the validation result
+  res.status(200).send('Welcome!');
 });
 ```
 
@@ -123,8 +167,25 @@ app.get('/secret-stuff', function(req, res){
 });
 ```
 
+or use the `assertHeaders` counterpart:
+
+```javascript
+import { assertHeaders, presence, format } from 'node-request-validator';
+
+app.get('/secret-stuff', function(req, res){
+  assertHeaders(req, [
+    presence('Authorization'),
+    format('Authorization', /Token token="\w+"/)
+  ]);
+
+  // No need to check the validation result
+  res.status(200).send('Here is all your secret stuff!');
+});
+```
+
 #### Everything
-You can use `validateAll` to run validation rules against all properties at once (`body`, `params`, `query` and `headers`).
+You can use `validateAll` or `assertAll` to run validation rules against all properties at once (`body`, `params`, `query`).
+Important: `validateAll` and `assertAll` will not run validations agains `headers` since they're pretty different use cases.
 
 ### Validation Helpers
 Validation helpers are functions you can use to validate incoming request properties.
