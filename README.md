@@ -239,7 +239,7 @@ app.use(function(err, req, res, next) {
 ### Validation Helpers
 Validation helpers are functions you can use to validate incoming request properties.
 
-node-request-validator relies on the super battle tested `validator.js` library.
+node-request-validator relies on the super battle tested [validator.js](https://github.com/chriso/validator.js) library.
 
 #### Supported Helpers
 Here's a list of currently supported helpers:
@@ -266,7 +266,7 @@ Here's a list of currently supported helpers:
 |matches(paramName, pattern [, modifiers])| check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`. |
 
 ### Not currently supported
-These are a few other helpers avaliable in `validator.js` that could be used in node-request-validator.
+These are a few other helpers avaliable in [validator.js](https://github.com/chriso/validator.js) that could be used in node-request-validator.
 Feel free to submit a PR if you need any of these functions.
 
 | Helper | Description |
