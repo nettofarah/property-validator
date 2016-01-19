@@ -298,3 +298,19 @@ Feel free to submit a PR if you need any of these functions.
 | isUppercase(paramName) | check if the string is uppercase. |
 | isVariableWidth(paramName) | check if the string contains a mixture of full and half-width chars. |
 | isWhitelisted(paramName, chars) | checks characters if they appear in the whitelist. |
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/nettofarah/node-request-validator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Code of Conduct](https://github.com/nettofarah/node-request-validator/blob/master/CODE_OF_CONDUCT.md).
+
+To run the specs check out the repo and follow these steps:
+
+```bash
+$ npm install
+$ npm run test
+```
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
