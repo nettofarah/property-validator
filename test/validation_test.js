@@ -63,3 +63,56 @@ describe('Validation', function() {
     });
   });
 });
+
+
+// No need to overtest here
+// We can trust validator.js
+describe('Validation Helpers', function() {
+  var v = validator;
+
+  function t(validation) {
+    assert(validation.result);
+  }
+
+  function f(validation) {
+    assert(!validation.result);
+  }
+
+  it('emails', function () {
+    t(v.isEmail('i')({ i: 'nettofarah@gmail.com' }));
+    f(v.isEmail('i')({ i: 'nettofarahatgmail.com' }));
+  });
+
+  it('contains', function() {
+    t(v.contains('i', 'netto')({ i: 'nettofarah' }));
+    f(v.contains('i', 'netto')({ i: 'martaleal' }));
+  });
+
+  it('isAlpha', function() {
+    t(v.isAlpha('i')({ i: 'nettofarah' }));
+    f(v.isAlpha('i')({ i: '123123' }));
+  });
+
+  it('equals', function() {
+    t(v.equals('i', 'nettofarah')({ i: 'nettofarah' }));
+    f(v.equals('i', 'nettofarah')({ i: 'buhh' }));
+
+    t(v.isEqual('i', 'nettofarah')({ i: 'nettofarah' }));
+    f(v.isEqual('i', 'nettofarah')({ i: 'buhh' }));
+  });
+
+  it('isAlphaNumeric', function() {
+    t(v.isAlphanumeric('i')({ i: 'nettofarah123' }));
+    f(v.isAlphanumeric('i')({ i: '#@' }));
+  });
+
+  it('isCreditCard', function() {
+    t(v.isCreditCard('i')({ i: '375556917985515' }));
+    f(v.isCreditCard('i')({ i: '123123' }));
+  });
+
+  it('isCurrency', function() {
+    t(v.isCurrency('i')({ i: '$10,123.45' }));
+    f(v.isCurrency('i')({ i: 'bla' }));
+  });
+});
