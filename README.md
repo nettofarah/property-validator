@@ -243,68 +243,58 @@ node-request-validator relies on the super battle tested `validator.js` library.
 
 #### Supported Helpers
 Here's a list of currently supported helpers:
-- **contains(paramName, seed)** - check if the string contains the seed.
 
-- **equals(paramName, comparison)** - check if the string matches the comparison.
-
-- **isAlpha(paramName)** - check if the string contains only letters (a-zA-Z).
-
-- **isAlphanumeric(paramName)** - check if the string contains only letters and numbers.
-
-- **isCreditCard(paramName)** - check if the string is a credit card.
-
-- **isCurrency(paramName, options)** - check if the string is a valid currency amount. `options` is an object which defaults to `{symbol: '$', require_symbol: false, allow_space_after_symbol: false, symbol_after_digits: false, allow_negatives: true, parens_for_negatives: false, negative_sign_before_digits: false, negative_sign_after_digits: false, allow_negative_sign_placeholder: false, thousands_separator: ',', decimal_separator: '.', allow_space_after_digits: false }`.
-
-- **isDate(paramName)** - check if the string is a date.
-
-- **isDecimal(paramName)** - check if the string represents a decimal number, such as 0.1, .3, 1.1, 1.00003, 4.0, etc.
-
-- **isEmail(paramName [, options])** - check if the string is an email. `options` is an object which defaults to `{ allow_display_name: false, allow_utf8_local_part: true, require_tld: true }`. If `allow_display_name` is set to true, the validator will also match `Display Name <email-address>`. If `allow_utf8_local_part` is set to false, the validator will not allow any non-English UTF8 character in email address' local part. If `require_tld` is set to false, e-mail addresses without having TLD in their domain will also be matched.
-
-- **isIn(paramName, values)** - check if the string is in a array of allowed values.
-
-- **isInt(paramName [, options])** - check if the string is an integer. `options` is an object which can contain the keys `min` and/or `max` to check the integer is within boundaries (e.g. `{ min: 10, max: 99 }`).
-
-- **isJSON(paramName)** - check if the string is valid JSON (note: uses JSON.parse).
-
-- **isNull(paramName)** - check if the string is null.
-
-- **isNumeric(paramName)** - check if the string contains only numbers.
-
-- **isURL(paramName [, options])** - check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false }`.
-
-- **isUUID(paramName [, version])** - check if the string is a UUID (version 3, 4 or 5).
-
-- **matches(paramName, pattern [, modifiers])** - check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`.
+| Helper | Description |
+|--------|-------------|
+|**presence(paramName)**| check if the current param is present. |
+|**contains(paramName, seed)**| check if the string contains the seed. |
+|**equals(paramName, comparison)**| check if the string matches the comparison. |
+|**isAlpha(paramName)**| check if the string contains only letters (a-zA-Z). |
+|**isAlphanumeric(paramName)**| check if the string contains only letters and numbers. |
+|**isCreditCard(paramName)**| check if the string is a credit card. |
+|**isCurrency(paramName, options)**| check if the string is a valid currency amount. `options` is an object which defaults to `{symbol: '$', require_symbol: false, allow_space_after_symbol: false, symbol_after_digits: false, allow_negatives: true, parens_for_negatives: false, negative_sign_before_digits: false, negative_sign_after_digits: false, allow_negative_sign_placeholder: false, thousands_separator: ',', decimal_separator: '.', allow_space_after_digits: false }`. |
+|**isDate(paramName)**| check if the string is a date. |
+|**isDecimal(paramName)**| check if the string represents a decimal number, such as 0.1, .3, 1.1, 1.00003, 4.0, etc. |
+|**isEmail(paramName [, options])**| check if the string is an email. `options` is an object which defaults to `{ allow_display_name: false, allow_utf8_local_part: true, require_tld: true }`. If `allow_display_name` is set to true, the validator will also match `Display Name <email-address>`. If `allow_utf8_local_part` is set to false, the validator will not allow any non-English UTF8 character in email address' local part. If `require_tld` is set to false, e-mail addresses without having TLD in their domain will also be matched. |
+|**isIn(paramName, values)**| check if the string is in a array of allowed values. |
+|**isInt(paramName [, options])**| check if the string is an integer. `options` is an object which can contain the keys `min` and/or `max` to check the integer is within boundaries (e.g. `{ min: 10, max: 99 }`). |
+|**isJSON(paramName)**| check if the string is valid JSON (note: uses JSON.parse). |
+|**isNull(paramName)**| check if the string is null. |
+|**isNumeric(paramName)**| check if the string contains only numbers. |
+|**isURL(paramName [, options])**| check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false }`. |
+|**isUUID(paramName [, version])**| check if the string is a UUID (version 3, 4 or 5). |
+|**matches(paramName, pattern [, modifiers])**| check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`. |
 
 ### Not currently supported
 These are a few other helpers avaliable in `validator.js` that could be used in node-request-validator.
 Feel free to submit a PR if you need any of these functions.
 
-- **isAfter(paramName [, date])** - check if the string is a date that's after the specified date (defaults to now).
-- **isAscii(paramName)** - check if the string contains ASCII chars only.
-- **isBase64(paramName)** - check if a string is base64 encoded.
-- **isBefore(paramName [, date])** - check if the string is a date that's before the specified date.
-- **isBoolean(paramName)** - check if a string is a boolean.
-- **isByteLength(paramName, min [, max])** - check if the string's length (in bytes) falls in a range.
-- **isDivisibleBy(paramName, number)** - check if the string is a number that's divisible by another.
-- **isFQDN(paramName [, options])** - check if the string is a fully qualified domain name (e.g. domain.com). `options` is an object which defaults to `{ require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
-- **isFloat(paramName [, options])** - check if the string is a float. `options` is an object which can contain the keys `min` and/or `max` to validate the float is within boundaries (e.g. `{ min: 7.22, max: 9.55 }`).
-- **isFullWidth(paramName)** - check if the string contains any full-width chars.
-- **isHalfWidth(paramName)** - check if the string contains any half-width chars.
-- **isHexColor(paramName)** - check if the string is a hexadecimal color.
-- **isHexadecimal(paramName)** - check if the string is a hexadecimal number.
-- **isIP(paramName [, version])** - check if the string is an IP (version 4 or 6).
-- **isISBN(paramName [, version])** - check if the string is an ISBN (version 10 or 13).
-- **isISIN(paramName)** - check if the string is an [ISIN][ISIN] (stock/security identifier).
-- **isISO8601(paramName)** - check if the string is a valid [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date.
-- **isLength(paramName, min [, max])** - check if the string's length falls in a range. Note: this function takes into account surrogate pairs.
-- **isLowercase(paramName)** - check if the string is lowercase.
-- **isMACAddress(paramName)** - check if the string is a MAC address.
-- **isMobilePhone(paramName, locale)** - check if the string is a mobile phone number, (locale is one of `['zh-CN', 'zh-TW', 'en-ZA', 'en-AU', 'en-HK', 'pt-PT', 'fr-FR', 'el-GR', 'en-GB', 'en-US', 'en-ZM', 'ru-RU', 'nb-NO', 'nn-NO', 'vi-VN', 'en-NZ', 'en-IN']`).
-- **isMongoId(paramName)** - check if the string is a valid hex-encoded representation of a [MongoDB ObjectId][mongoid].
-- **isMultibyte(paramName)** - check if the string contains one or more multibyte chars.
-- **isSurrogatePair(paramName)** - check if the string contains any surrogate pairs chars.
-- **isUppercase(paramName)** - check if the string is uppercase.
-- **isVariableWidth(paramName)** - check if the string contains a mixture of full and half-width chars.
-- **isWhitelisted(paramName, chars)** - checks characters if they appear in the whitelist.
+| Helper | Description |
+|--------|-------------|
+| **isAfter(paramName [, date])** | check if the string is a date that's after the specified date (defaults to now). |
+| **isAscii(paramName)** | check if the string contains ASCII chars only. |
+| **isBase64(paramName)** | check if a string is base64 encoded. |
+| **isBefore(paramName [, date])** | check if the string is a date that's before the specified date. |
+| **isBoolean(paramName)** | check if a string is a boolean. |
+| **isByteLength(paramName, min [, max])** | check if the string's length (in bytes) falls in a range. |
+| **isDivisibleBy(paramName, number)** | check if the string is a number that's divisible by another. |
+| **isFQDN(paramName [, options])** | check if the string is a fully qualified domain name (e.g. domain.com). `options` is an object which defaults to `{ require_tld: true, allow_underscores: false, allow_trailing_dot: false }`. |
+| **isFloat(paramName [, options])** | check if the string is a float. `options` is an object which can contain the keys `min` and/or `max` to validate the float is within boundaries (e.g. `{ min: 7.22, max: 9.55 }`). |
+| **isFullWidth(paramName)** | check if the string contains any full-width chars. |
+| **isHalfWidth(paramName)** | check if the string contains any half-width chars. |
+| **isHexColor(paramName)** | check if the string is a hexadecimal color. |
+| **isHexadecimal(paramName)** | check if the string is a hexadecimal number. |
+| **isIP(paramName [, version])** | check if the string is an IP (version 4 or 6). |
+| **isISBN(paramName [, version])** | check if the string is an ISBN (version 10 or 13). |
+| **isISIN(paramName)** | check if the string is an [ISIN][ISIN] (stock/security identifier). |
+| **isISO8601(paramName)** | check if the string is a valid [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date. |
+| **isLength(paramName, min [, max])** | check if the string's length falls in a range. Note: this function takes into account surrogate pairs. |
+| **isLowercase(paramName)** | check if the string is lowercase. |
+| **isMACAddress(paramName)** | check if the string is a MAC address. |
+| **isMobilePhone(paramName, locale)** | check if the string is a mobile phone number, (locale is one of `['zh-CN', 'zh-TW', 'en-ZA', 'en-AU', 'en-HK', 'pt-PT', 'fr-FR', 'el-GR', 'en-GB', 'en-US', 'en-ZM', 'ru-RU', 'nb-NO', 'nn-NO', 'vi-VN', 'en-NZ', 'en-IN']`). |
+| **isMongoId(paramName)** | check if the string is a valid hex-encoded representation of a [MongoDB ObjectId][mongoid]. |
+| **isMultibyte(paramName)** | check if the string contains one or more multibyte chars. |
+| **isSurrogatePair(paramName)** | check if the string contains any surrogate pairs chars. |
+| **isUppercase(paramName)** | check if the string is uppercase. |
+| **isVariableWidth(paramName)** | check if the string contains a mixture of full and half-width chars. |
+| **isWhitelisted(paramName, chars)** | checks characters if they appear in the whitelist. |
