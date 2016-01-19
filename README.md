@@ -20,11 +20,11 @@ node-request-validator provides a suite of `validate` and `assert` functions to 
 
 You can run validations and assertions against the request `body`, `query`, `params` and `headers`, or against all of them at once using `assertAll` or `validateAll`.
 
-Here's how to validate a request:
+Using `assertAll`:
 
 ```javascript
 import express from 'express';
-import { assertAll, presence, email, middleware } from 'node-request-validator';
+import { assertAll, presence, email, assertMiddleware } from 'node-request-validator';
 
 const app = express();
 
@@ -37,7 +37,7 @@ app.get('/hello', function(req, res){
   res.status(200).json({ name: req.query.username });
 });
 
-app.use(middleware);
+app.use(assertMiddleware);
 ```
 
 ### Request Validation
