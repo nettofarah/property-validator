@@ -3,10 +3,13 @@ var assert = require('assert');
 var express = require('express');
 var request = require('supertest');
 
-var assertAll = require('../lib/request_assertions').assertAll;
-var middleware = require('../lib/middleware');
-var presence = require('../lib/validations').presence;
-var email = require('../lib/validations').email;
+var nodeRequestValidator = require('../index');
+
+var assertAll = nodeRequestValidator.assertAll;
+var middleware = nodeRequestValidator.assertMiddleware;
+
+var presence = nodeRequestValidator.presence;
+var email = nodeRequestValidator.email;
 
 describe('Validation Middleware', function() {
 

@@ -1,5 +1,4 @@
 var assert = require('assert');
-var sinon = require('sinon');
 
 var validator = require('../index')
 var email = validator.email;

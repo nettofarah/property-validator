@@ -1,10 +1,10 @@
 var assert = require('assert');
-var requestAssertions = require('../lib/request_assertions');
-var validations = require('../lib/validations');
 
-var presence = validations.presence;
-var email = validations.email;
-var ValidationError = requestAssertions.ValidationError;
+var validator = require('../index');
+
+var presence = validator.presence;
+var email = validator.email;
+var ValidationError = validator.ValidationError;
 
 describe('Assertions', function() {
 
@@ -15,7 +15,7 @@ describe('Assertions', function() {
     };
 
     assert.doesNotThrow(function() {
-      var assertion = requestAssertions.assert(properties, [
+      var assertion = validator.assert(properties, [
         presence('login'),
         email('email')
       ]);
@@ -32,7 +32,7 @@ describe('Assertions', function() {
 
     it('throws an error when properties are invalid', function() {
       assert.throws(function() {
-        requestAssertions.assert(invalidProperties, [
+        validator.assert(invalidProperties, [
           email('email_address')
         ]);
       }, ValidationError);
@@ -40,7 +40,7 @@ describe('Assertions', function() {
 
     it('returns all errors', function() {
       try {
-        requestAssertions.assert(invalidProperties, [
+        validator.assert(invalidProperties, [
           email('email_address')
         ]);
       } catch(validationError) {
@@ -57,7 +57,7 @@ describe('Assertions', function() {
 
     it('returns error messages', function() {
       try {
-        requestAssertions.assert(invalidProperties, [
+        validator.assert(invalidProperties, [
           email('email_address')
         ]);
       } catch(validationError) {
