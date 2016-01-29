@@ -1,10 +1,18 @@
 {
   "name": "property-validator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Easy property validation for JavaScript, Node and Express.",
   "main": "index.js",
+  "homepage": "http://github.com/nettofarah/property-validator",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/"
+  },
+  "bugs": {
+    "url": "https://github.com/nettofarah/property-validator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nettofarah/property-validator.git"
   },
   "keywords": [
     "validation",
