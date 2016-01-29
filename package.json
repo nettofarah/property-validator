@@ -15,7 +15,7 @@
     "express"
   ],
   "author": "Netto Farah",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "express": "^4.13.3",
     "mocha": "^2.3.4",
