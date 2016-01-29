@@ -49,7 +49,7 @@ handler.
 
 #### Request Parameters
 
-You can run validations agains incoming request params.
+You can run validations against incoming request params.
 
 ```javascript
 import { validateParams, presence } from 'property-validator';
