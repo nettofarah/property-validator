@@ -14,5 +14,9 @@
   "dependencies": {
     "express": "^4.13.4",
     "lodash": "^4.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13"
   }
 }
