@@ -1,18 +1,18 @@
-# node-request-validator
-:white_check_mark: Make Request Validation great again.
+# property-validator
+:white_check_mark: Easy property validation for JavaScript, Node and Express
 
-Built on top of [validator.js](https://github.com/chriso/validator.js), node-request-validator makes validating request parameters easy and fun.
+Built on top of [validator.js](https://github.com/chriso/validator.js), property-validator makes validating request parameters easy and fun.
 No chaining, no prototype violations, no magic. Just some simple, stateless, javascript functions.
 
 All you have to do is import some base validation functions and declare the validation rules for your request.
 
 ## Instalation
 ```bash
-npm install --save node-request-validator
+npm install --save property-validator
 ```
 
 ## Usage
-node-request-validator provides a suite of `validate` and `assert` functions to make request validation simple and easy to write.
+property-validator provides a suite of `validate` and `assert` functions to make request validation simple and easy to write.
 
 `assert` functions halt the request handler's execution if one of the validation rules breaks.
 
@@ -24,7 +24,7 @@ Using `assertAll`:
 
 ```javascript
 import express from 'express';
-import { assertAll, presence, email, assertMiddleware } from 'node-request-validator';
+import { assertAll, presence, email, assertMiddleware } from 'property-validator';
 
 const app = express();
 
@@ -41,7 +41,7 @@ app.use(assertMiddleware);
 ```
 
 ### Request Validation
-node-request-validator offers out of the box support for request params, query
+property-validator offers out of the box support for request params, query
 string, body and header validations.
 
 All you have to do is to import the correct function and annotate your request
@@ -52,7 +52,7 @@ handler.
 You can run validations agains incoming request params.
 
 ```javascript
-import { validateParams, presence } from 'node-request-validator';
+import { validateParams, presence } from 'property-validator';
 
 app.get('/hello/:username', function(req, res){
   const validation = validateParams(req, [
@@ -69,7 +69,7 @@ app.get('/hello/:username', function(req, res){
 
 or use the `assertParams` counterpart:
 ```javascript
-import { assertParams, presence } from 'node-request-validator';
+import { assertParams, presence } from 'property-validator';
 
 app.get('/hello/:username', function(req, res){
   assertParams(req, [
@@ -84,7 +84,7 @@ app.get('/hello/:username', function(req, res){
 #### Query String
 
 ```javascript
-import { validateQuery, email } from 'node-request-validator';
+import { validateQuery, email } from 'property-validator';
 
 app.get('/hi', function(req, res){
   const validation = validateQuery(req, [
@@ -101,7 +101,7 @@ app.get('/hi', function(req, res){
 
 or use the `assertQuery` counterpart:
 ```javascript
-import { assertQuery, email } from 'node-request-validator';
+import { assertQuery, email } from 'property-validator';
 
 app.get('/hi', function(req, res){
   assertQuery(req, [
@@ -116,7 +116,7 @@ app.get('/hi', function(req, res){
 #### Body
 
 ```javascript
-import { validateBody, presence, email } from 'node-request-validator';
+import { validateBody, presence, email } from 'property-validator';
 
 app.post('/sign-up', function(req, res){
   const validation = validateBody(req, [
@@ -135,7 +135,7 @@ app.post('/sign-up', function(req, res){
 or use the `assertBody` counterpart:
 
 ```javascript
-import { assertBody, presence, email } from 'node-request-validator';
+import { assertBody, presence, email } from 'property-validator';
 
 app.post('/sign-up', function(req, res){
   assertBody(req, [
@@ -151,7 +151,7 @@ app.post('/sign-up', function(req, res){
 
 #### Headers
 ```javascript
-import { validateHeaders, presence, format } from 'node-request-validator';
+import { validateHeaders, presence, format } from 'property-validator';
 
 app.get('/secret-stuff', function(req, res){
   const validation = validateHeaders(req, [
@@ -170,7 +170,7 @@ app.get('/secret-stuff', function(req, res){
 or use the `assertHeaders` counterpart:
 
 ```javascript
-import { assertHeaders, presence, format } from 'node-request-validator';
+import { assertHeaders, presence, format } from 'property-validator';
 
 app.get('/secret-stuff', function(req, res){
   assertHeaders(req, [
@@ -188,12 +188,12 @@ You can use `validateAll` or `assertAll` to run validation rules against all pro
 Important: `validateAll` and `assertAll` will not run validations agains `headers` since they're pretty different use cases.
 
 ### Assert Middleware
-node-request-validator ships with a standard middleware that automatically handles assert errors.
+property-validator ships with a standard middleware that automatically handles assert errors.
 All you have to do is to import `assertMiddleware` and mount it after all request handlers in your express app.
 
 ```javascript
 import express from 'express';
-import { assertAll, presence, email, assertMiddleware } from 'node-request-validator';
+import { assertAll, presence, email, assertMiddleware } from 'property-validator';
 
 const app = express();
 
@@ -217,7 +217,7 @@ app.use(assertMiddleware);
 You can also roll your own middleware in case you need any sort of customization.
 
 ```javascript
-import { ValidationError } from 'node-request-validator';
+import { ValidationError } from 'property-validator';
 
 app.use(function(err, req, res, next) {
   // Do not swallow all kinds of errors
@@ -239,7 +239,7 @@ app.use(function(err, req, res, next) {
 ### Validation Helpers
 Validation helpers are functions you can use to validate incoming request properties.
 
-node-request-validator relies on the super battle tested [validator.js](https://github.com/chriso/validator.js) library.
+property-validator relies on the super battle tested [validator.js](https://github.com/chriso/validator.js) library.
 
 #### Supported Helpers
 Here's a list of currently supported helpers:
@@ -266,7 +266,7 @@ Here's a list of currently supported helpers:
 |matches(paramName, pattern [, modifiers])| check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`. |
 
 ### Not currently supported
-These are a few other helpers avaliable in [validator.js](https://github.com/chriso/validator.js) that could be used in node-request-validator.
+These are a few other helpers avaliable in [validator.js](https://github.com/chriso/validator.js) that could be used in property-validator.
 Feel free to submit a PR if you need any of these functions.
 
 | Helper | Description |
@@ -301,7 +301,7 @@ Feel free to submit a PR if you need any of these functions.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/nettofarah/node-request-validator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Code of Conduct](https://github.com/nettofarah/node-request-validator/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/nettofarah/property-validator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Code of Conduct](https://github.com/nettofarah/property-validator/blob/master/CODE_OF_CONDUCT.md).
 
 To run the specs check out the repo and follow these steps:
 

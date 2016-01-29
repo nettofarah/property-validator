@@ -1,7 +1,7 @@
 {
-  "name": "node-request-validator",
+  "name": "property-validator",
   "version": "0.0.1",
-  "description": "Utility functions for request validation.",
+  "description": "Easy property validation for JavaScript, Node and Express.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/"
@@ -9,6 +9,8 @@
   "keywords": [
     "validation",
     "validator",
+    "property",
+    "property validation",
     "requests",
     "express"
   ],
