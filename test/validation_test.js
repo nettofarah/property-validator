@@ -115,4 +115,14 @@ describe('Validation Helpers', function() {
     t(v.isCurrency('i')({ i: '$10,123.45' }));
     f(v.isCurrency('i')({ i: 'bla' }));
   });
+
+  it('matches', function() {
+    t(v.matches('i', /\d+/)({ i: '123' }));
+    t(v.matches('i', /\w+/)({ i: 'bla' }));
+    f(v.matches('i', /\d+/)({ i: 'bla' }));
+
+    t(v.format('i', /\d+/)({ i: '123' }));
+    t(v.format('i', /\w+/)({ i: 'bla' }));
+    f(v.format('i', /\d+/)({ i: 'bla' }));
+  });
 });
