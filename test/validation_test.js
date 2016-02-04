@@ -125,4 +125,16 @@ describe('Validation Helpers', function() {
     t(v.format('i', /\w+/)({ i: 'bla' }));
     f(v.format('i', /\d+/)({ i: 'bla' }));
   });
+
+  it('isUUID / uuid', function() {
+    t(v.isUUID('i')({ i: 'b7e34a19-1e65-4912-b43f-f68a93d4a1bd' }));
+    t(v.isUUID('i')({ i: 'A987FBC9-4BED-4078-8F07-9141BA07C9F3' }));
+    f(v.isUUID('i')({ i: 'xxxA987FBC9-4BED-3078-CF07-9141BA07C9F3' }));
+    f(v.isUUID('i')({ i: 'bla' }));
+
+    t(v.uuid('i')({ i: 'b7e34a19-1e65-4912-b43f-f68a93d4a1bd' }));
+    t(v.uuid('i')({ i: 'A987FBC9-4BED-4078-8F07-9141BA07C9F3' }));
+    f(v.uuid('i')({ i: 'xxxA987FBC9-4BED-3078-CF07-9141BA07C9F3' }));
+    f(v.uuid('i')({ i: 'bla' }));
+  });
 });

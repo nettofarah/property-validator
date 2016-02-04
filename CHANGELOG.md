@@ -1,5 +1,9 @@
 # Changelog
 
+
+### 0.2.0(Feb 3, 2016)
+- Add `uuid` as an alias for `isUUID`
+
 ### 0.1.2(Feb 3, 2016)
 - Fix `matches` and `format` parameter order
 
