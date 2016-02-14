@@ -187,6 +187,22 @@ app.get('/secret-stuff', function(req, res){
 You can use `validateAll` or `assertAll` to run validation rules against all properties at once (`body`, `params`, `query`).
 Important: `validateAll` and `assertAll` will not run validations agains `headers` since they're pretty different use cases.
 
+### Optional Validation
+`optional` is a special validation helper that can be used when fields are not
+strictly required, but need to be validated in case they are present.
+
+You can pass in any other validation helper, and propery-validator will only run
+the helper function against the input params if the optional field is present.
+
+Pagination is usually a good use case for optional params:
+
+```javascript
+var validation = validateQuery(params, [
+  optional(isNumeric('limit')),
+  optional(isNumeric('offset'))
+]);
+```
+
 ### Assert Middleware
 property-validator ships with a standard middleware that automatically handles assert errors.
 All you have to do is to import `assertMiddleware` and mount it after all request handlers in your express app.
@@ -247,6 +263,7 @@ Here's a list of currently supported helpers:
 | Helper | Description |
 |--------|-------------|
 |presence(paramName)| check if the current param is present. |
+|optional(validationHelper(paramName, ...)) | takes in another validation helper and only runs the validation if the optional field is present. |
 |contains(paramName, seed)| check if the string contains the seed. |
 |equals(paramName, comparison)| check if the string matches the comparison. |
 |isAlpha(paramName)| check if the string contains only letters (a-zA-Z). |
@@ -313,5 +330,3 @@ $ npm run test
 ## License
 
 The module is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
-
