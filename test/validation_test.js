@@ -62,6 +62,56 @@ describe('Validation', function() {
       ]);
     });
   });
+
+  describe('optional validation', function() {
+    var params;
+    var optional = validator.optional;
+
+    before(function() {
+      params = {}
+    });
+
+    it('allows optional fields', function() {
+      var validation = validate(params, [
+        optional(email('email_address')),
+        optional(validator.isCreditCard('primary_cc'))
+      ]);
+
+      assert(validation.valid);
+      assert(validation.errors.length == 0);
+    });
+
+    it('fails when the fields are present (and invalid)', function() {
+      params = {
+        primary_cc: '123 456'
+      };
+
+      var validation = validate(params, [
+        optional(email('email_address')),
+        optional(validator.isCreditCard('primary_cc'))
+      ]);
+
+      assert(!validation.valid);
+      assert(validation.errors.length == 1);
+      assert.deepEqual({
+        field: 'primary_cc',
+        message: '"primary_cc" should look like a credit card'
+      }, validation.errors[0]);
+    });
+
+    it('does not interfere with good validations', function() {
+      params = {
+        email_address: 'nettofarah@gmail.com'
+      };
+
+      var validation = validate(params, [
+        optional(email('email_address'))
+      ]);
+
+      assert(validation.valid);
+      assert(validation.errors.length == 0);
+    })
+  });
 });
 
 
@@ -78,6 +128,25 @@ describe('Validation Helpers', function() {
     assert(!validation.result);
   }
 
+  it('works with nested props', function() {
+    var params = {
+      person: {
+        email: 'nettofarah@gmail.com'
+      }
+    };
+
+    var emailValidator = validator.email('person.email');
+    assert(emailValidator(params).result);
+
+    var invalidParams = {
+      person: {
+        email: 'invalid email'
+      }
+    };
+
+    assert(emailValidator(invalidParams).result == false);
+  });
+
   it('emails', function () {
     t(v.isEmail('i')({ i: 'nettofarah@gmail.com' }));
     f(v.isEmail('i')({ i: 'nettofarahatgmail.com' }));
@@ -87,6 +156,11 @@ describe('Validation Helpers', function() {
     t(v.contains('i', 'netto')({ i: 'nettofarah' }));
     f(v.contains('i', 'netto')({ i: 'martaleal' }));
   });
+
+  it('optional', function() {
+    t(v.optional(v.isEmail('i'))({}));
+    f(v.optional(v.isEmail('i'))({ i: 'nettofarahatgmail' }));
+  })
 
   it('isAlpha', function() {
     t(v.isAlpha('i')({ i: 'nettofarah' }));
