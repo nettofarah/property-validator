@@ -1,5 +1,7 @@
 # Changelog
 
+### 0.3.0(Feb 13, 2016)
+- Optional validations support
 
 ### 0.2.0(Feb 3, 2016)
 - Add `uuid` as an alias for `isUUID`

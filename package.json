@@ -1,6 +1,6 @@
 {
   "name": "property-validator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Easy property validation for JavaScript, Node and Express.",
   "main": "index.js",
   "homepage": "http://github.com/nettofarah/property-validator",
