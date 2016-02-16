@@ -6,7 +6,7 @@ No chaining, no prototype violations, no magic. Just some simple, stateless, jav
 
 All you have to do is import some base validation functions and declare the validation rules for your request.
 
-## Instalation
+## Installation
 ```bash
 npm install --save property-validator
 ```
