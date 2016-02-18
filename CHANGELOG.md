@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.3.1(Feb 18, 2016)
+- Coerce input to string when using validator.js helpers
+
 ### 0.3.0(Feb 13, 2016)
 - Optional validations support
 
