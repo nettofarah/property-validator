@@ -264,6 +264,7 @@ Here's a list of currently supported helpers:
 |--------|-------------|
 |presence(paramName)| check if the current param is present. |
 |optional(validationHelper(paramName, ...)) | takes in another validation helper and only runs the validation if the optional field is present. |
+|oneOf(paramName, optionList)| checks if the input param is one of the values within a list of valid options. |
 |contains(paramName, seed)| check if the string contains the seed. |
 |equals(paramName, comparison)| check if the string matches the comparison. |
 |isAlpha(paramName)| check if the string contains only letters (a-zA-Z). |

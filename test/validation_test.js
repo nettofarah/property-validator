@@ -162,6 +162,23 @@ describe('Validation Helpers', function() {
     f(v.optional(v.isEmail('i'))({ i: 'nettofarahatgmail' }));
   })
 
+  it('oneOf', function() {
+    t(v.oneOf('fruit', ['banana', 'apple', 'orange'])({
+      fruit: 'banana'
+    }));
+
+    t(v.oneOf('fruit', ['banana', 'apple', 'orange'])({
+      fruit: 'apple'
+    }));
+
+    t(v.oneOf('fruit', ['banana', 'apple', 'orange'])({
+      fruit: 'orange'
+    }));
+
+    f(v.oneOf('fruit', ['banana', 'apple', 'orange'])({ fruit: 'grape' }));
+    f(v.oneOf('fruit', ['banana', 'apple', 'orange'])({ }));
+  })
+
   it('isAlpha', function() {
     t(v.isAlpha('i')({ i: 'nettofarah' }));
     f(v.isAlpha('i')({ i: '123123' }));
