@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.4.0(Feb 19, 2016)
+- Add `oneOf` validation
+
 ### 0.3.1(Feb 18, 2016)
 - Coerce input to string when using validator.js helpers
 
