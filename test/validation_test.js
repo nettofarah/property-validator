@@ -110,8 +110,44 @@ describe('Validation', function() {
 
       assert(validation.valid);
       assert(validation.errors.length == 0);
-    })
+    });
   });
+
+  describe('Custom validation messages', function() {
+
+    it('allows custom validation messages', function() {
+      var validation = validate({}, [
+        presence('name', 'Oops, you forgot to tell us your name')
+      ]);
+
+      var errors = validation.errors[0];
+      assert.equal(errors.message, 'Oops, you forgot to tell us your name')
+    });
+
+    it('works with multi param helpers', function() {
+      var isCurrency = validator.isCurrency;
+
+      var params = {
+        brl: '10.00',
+        usd: '$$1.99',
+        yen: '1000.00'
+      };
+
+      var validation = validate(params, [
+        isCurrency('usd', 'Oops, this does not look like US dollars'),
+        isCurrency('brl', { symbol: 'R$', require_symbol: true }, 'Reais are required to be prefixed with R$'),
+        isCurrency('yen', { symbol: '¥', require_symbol: true })
+      ]);
+
+      var expectedErrors = [
+        { field: 'usd', message: 'Oops, this does not look like US dollars' },
+        { field: 'brl', message: 'Reais are required to be prefixed with R$' },
+        { field: 'yen', message: '"yen" should look like currency' } // default error message
+      ];
+
+      assert.deepEqual(expectedErrors, validation.errors);
+    });
+  })
 });
 
 
@@ -126,6 +162,10 @@ describe('Validation Helpers', function() {
 
   function f(validation) {
     assert(!validation.result);
+  }
+
+  function m(validation, message) {
+    assert.equal(validation.message, message)
   }
 
   it('works with nested props', function() {
@@ -150,11 +190,21 @@ describe('Validation Helpers', function() {
   it('emails', function () {
     t(v.isEmail('i')({ i: 'nettofarah@gmail.com' }));
     f(v.isEmail('i')({ i: 'nettofarahatgmail.com' }));
+
+    m(
+      v.isEmail('i', 'bad email')({}),
+      'bad email'
+    );
   });
 
   it('contains', function() {
     t(v.contains('i', 'netto')({ i: 'nettofarah' }));
     f(v.contains('i', 'netto')({ i: 'martaleal' }));
+
+    m(
+      v.contains('i', 'netto', 'where is the thing?')({}),
+      'where is the thing?'
+    );
   });
 
   it('optional', function() {
@@ -177,6 +227,11 @@ describe('Validation Helpers', function() {
 
     f(v.oneOf('fruit', ['banana', 'apple', 'orange'])({ fruit: 'grape' }));
     f(v.oneOf('fruit', ['banana', 'apple', 'orange'])({ }));
+
+    m(
+      v.oneOf('fruit', ['banana', 'apple'])({ fruit: 'grape' }),
+      '"fruit" should be one of [banana, apple]'
+     )
   })
 
   it('isAlpha', function() {

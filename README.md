@@ -203,6 +203,21 @@ var validation = validateQuery(params, [
 ]);
 ```
 
+#### Custom Error Messages
+Validation helpers allow custom messages to be set.
+You can set the validation message to whatever you want if the default messages
+don't work well for your use case.
+
+All you need to do is to pass a custom error message as the last param to any validation helper.
+
+```javascript
+var validation = validate(params, [
+  presence('name', 'Oops, you forgot to tell us your name'),
+  isCurrency('rent_in_brl', { symbol: 'R$' }, 'Reais should be prefixed with R$'),
+  isCurrency('rent', 'This does not look like money')
+]);
+```
+
 ### Assert Middleware
 property-validator ships with a standard middleware that automatically handles assert errors.
 All you have to do is to import `assertMiddleware` and mount it after all request handlers in your express app.
