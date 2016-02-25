@@ -205,10 +205,10 @@ var validation = validateQuery(params, [
 
 #### Custom Error Messages
 Validation helpers allow custom messages to be set.
-You can set the validation message to whatever you want if the default messages
-don't work well for your use case.
+You can set the validation message to any string you want.
 
-All you need to do is to pass a custom error message as the last param to any validation helper.
+All you need to do is to pass in a custom error message as the last param when
+calling any validation helper.
 
 ```javascript
 var validation = validate(params, [
