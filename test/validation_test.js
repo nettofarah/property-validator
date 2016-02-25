@@ -128,6 +128,10 @@ describe('Validation Helpers', function() {
     assert(!validation.result);
   }
 
+  function m(validation, message) {
+    assert.equal(validation.message, message)
+  }
+
   it('works with nested props', function() {
     var params = {
       person: {
@@ -177,6 +181,11 @@ describe('Validation Helpers', function() {
 
     f(v.oneOf('fruit', ['banana', 'apple', 'orange'])({ fruit: 'grape' }));
     f(v.oneOf('fruit', ['banana', 'apple', 'orange'])({ }));
+
+    m(
+      v.oneOf('fruit', ['banana', 'apple'])({ fruit: 'grape' }),
+      '"fruit" should be one of [banana, apple]'
+     )
   })
 
   it('isAlpha', function() {
