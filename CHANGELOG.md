@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.5.0(Feb 24, 2016)
+- Custom validation messages
+
 ### 0.4.0(Feb 19, 2016)
 - Add `oneOf` validation
 
