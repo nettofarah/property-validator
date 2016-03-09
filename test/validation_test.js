@@ -63,6 +63,47 @@ describe('Validation', function() {
     });
   });
 
+  describe('presence validation', function() {
+    var params;
+    var presence = validator.presence;
+
+    before(function() {
+      params = {}
+    });
+
+    it('allows falsy values that are not null or undefined', function() {
+      params = {
+        foo: 0,
+        bar: false,
+        baz: ''
+      };
+
+      var validation = validate(params, [
+        presence('foo'),
+        presence('bar'),
+        presence('baz')
+      ]);
+
+      assert(validation.valid);
+      assert(validation.errors.length == 0);
+    });
+
+    it('fails when fields are null or undefined', function() {
+      params = {
+        foo: null,
+        bar: undefined
+      };
+
+      var validation = validate(params, [
+        presence('foo'),
+        presence('bar')
+      ]);
+
+      assert(!validation.valid);
+      assert(validation.errors.length == 2);
+    });
+  });
+
   describe('optional validation', function() {
     var params;
     var optional = validator.optional;
@@ -256,7 +297,7 @@ describe('Validation Helpers', function() {
     t(v.isArray('i')({ i: [1, 2, 3] }));
     f(v.isArray('i')({ i: 'bla' }));
 
-    m(v.isArray('i')({ i: 'test' }), '"i" must be an array');
+    m(v.isArray('i')({ i: 'test' }), '"i" should be an array');
   });
 
   it('isCreditCard', function() {
@@ -294,6 +335,6 @@ describe('Validation Helpers', function() {
   it('isPlainObject', function() {
     t(v.isPlainObject('i')({ i: { foo: true } }));
     f(v.isPlainObject('i')({ i: 'bla' }));
-    m(v.isPlainObject('i')({ i: 'test' }), '"i" must be a plain object');
+    m(v.isPlainObject('i')({ i: 'test' }), '"i" should be a plain object');
   });
 });
