@@ -252,6 +252,13 @@ describe('Validation Helpers', function() {
     f(v.isAlphanumeric('i')({ i: '#@' }));
   });
 
+  it('isArray', function() {
+    t(v.isArray('i')({ i: [1, 2, 3] }));
+    f(v.isArray('i')({ i: 'bla' }));
+
+    m(v.isArray('i')({ i: 'test' }), '"i" must be an array');
+  });
+
   it('isCreditCard', function() {
     t(v.isCreditCard('i')({ i: '375556917985515' }));
     f(v.isCreditCard('i')({ i: '123123' }));
@@ -282,5 +289,11 @@ describe('Validation Helpers', function() {
     t(v.uuid('i')({ i: 'A987FBC9-4BED-4078-8F07-9141BA07C9F3' }));
     f(v.uuid('i')({ i: 'xxxA987FBC9-4BED-3078-CF07-9141BA07C9F3' }));
     f(v.uuid('i')({ i: 'bla' }));
+  });
+
+  it('isPlainObject', function() {
+    t(v.isPlainObject('i')({ i: { foo: true } }));
+    f(v.isPlainObject('i')({ i: 'bla' }));
+    m(v.isPlainObject('i')({ i: 'test' }), '"i" must be a plain object');
   });
 });
