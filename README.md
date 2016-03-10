@@ -284,6 +284,7 @@ Here's a list of currently supported helpers:
 |equals(paramName, comparison)| check if the string matches the comparison. |
 |isAlpha(paramName)| check if the string contains only letters (a-zA-Z). |
 |isAlphanumeric(paramName)| check if the string contains only letters and numbers. |
+|isArray(paramName)| check if the current param is an array. |
 |isCreditCard(paramName)| check if the string is a credit card. |
 |isCurrency(paramName, options)| check if the string is a valid currency amount. `options` is an object which defaults to `{symbol: '$', require_symbol: false, allow_space_after_symbol: false, symbol_after_digits: false, allow_negatives: true, parens_for_negatives: false, negative_sign_before_digits: false, negative_sign_after_digits: false, allow_negative_sign_placeholder: false, thousands_separator: ',', decimal_separator: '.', allow_space_after_digits: false }`. |
 |isDate(paramName)| check if the string is a date. |
@@ -297,6 +298,7 @@ Here's a list of currently supported helpers:
 |isURL(paramName [, options])| check if the string is an URL. `options` is an object which defaults to `{ protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false }`. |
 |isUUID(paramName [, version])| check if the string is a UUID (version 3, 4 or 5). |
 |matches(paramName, pattern [, modifiers])| check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`. |
+|isPlainObject| check if the current param is a plain object. |
 
 ### Not currently supported
 These are a few other helpers avaliable in [validator.js](https://github.com/chriso/validator.js) that could be used in property-validator.
