@@ -18,6 +18,10 @@ property-validator provides a suite of `validate` and `assert` functions to make
 
 `validate` functions on the other hand, will return an object containing the result of all validations.
 
+---
+
+## NodeJS
+
 You can run validations and assertions against the request `body`, `query`, `params` and `headers`, or against all of them at once using `assertAll` or `validateAll`.
 
 Using `assertAll`:
@@ -187,38 +191,7 @@ app.get('/secret-stuff', function(req, res){
 You can use `validateAll` or `assertAll` to run validation rules against all properties at once (`body`, `params`, `query`).
 Important: `validateAll` and `assertAll` will not run validations agains `headers` since they're pretty different use cases.
 
-### Optional Validation
-`optional` is a special validation helper that can be used when fields are not
-strictly required, but need to be validated in case they are present.
-
-You can pass in any other validation helper, and propery-validator will only run
-the helper function against the input params if the optional field is present.
-
-Pagination is usually a good use case for optional params:
-
-```javascript
-var validation = validateQuery(params, [
-  optional(isNumeric('limit')),
-  optional(isNumeric('offset'))
-]);
-```
-
-#### Custom Error Messages
-Validation helpers allow custom messages to be set.
-You can set the validation message to any string you want.
-
-All you need to do is to pass in a custom error message as the last param when
-calling any validation helper.
-
-```javascript
-var validation = validate(params, [
-  presence('name', 'Oops, you forgot to tell us your name'),
-  isCurrency('rent_in_brl', { symbol: 'R$' }, 'Reais should be prefixed with R$'),
-  isCurrency('rent', 'This does not look like money')
-]);
-```
-
-### Assert Middleware
+#### Assert Middleware
 property-validator ships with a standard middleware that automatically handles assert errors.
 All you have to do is to import `assertMiddleware` and mount it after all request handlers in your express app.
 
@@ -267,7 +240,81 @@ app.use(function(err, req, res, next) {
 });
 ```
 
-### Validation Helpers
+---
+
+## Advanced usage
+
+property-validator is extensible. You can set optional property validation, customize your custom messages and write your own validation functions.
+
+### Optional Validation
+`optional` is a special validation helper that can be used when fields are not
+strictly required, but need to be validated in case they are present.
+
+You can pass in any other validation helper, and propery-validator will only run
+the helper function against the input params if the optional field is present.
+
+Pagination is usually a good use case for optional params:
+
+```javascript
+var validation = validate(params, [
+  optional(isNumeric('limit')),
+  optional(isNumeric('offset'))
+]);
+```
+
+### Custom Error Messages
+Validation helpers allow custom messages to be set.
+You can set the validation message to any string you want.
+
+All you need to do is to pass in a custom error message as the last param when
+calling any validation helper.
+
+```javascript
+var validation = validate(params, [
+  presence('name', 'Oops, you forgot to tell us your name'),
+  isCurrency('rent_in_brl', { symbol: 'R$' }, 'Reais should be prefixed with R$'),
+  isCurrency('rent', 'This does not look like money')
+]);
+```
+
+### Custom Validation Functions
+Writing your own validation functions is easy.
+
+```javascript
+// Your function will receive a property name as its argument
+function isTheUltimateAnswer(propertyName) {
+  // and then return a function that takes the
+  // actual object you want to validate
+  return function(subject) {
+    var value = subject[propertyName]
+    var isAwnser = value === 42
+
+    // Make sure your function returns `result`, `message`
+    // and `field`
+    return {
+      result: isAnswer,
+      message: value + " is not the Answer to the Ultimate Question of Life, The Universe, and Everything",
+      field: propertyName
+    }
+  }
+}
+```
+
+You can now use your custom function as you would with any other validation helper:
+
+```javascript
+var subject = {
+  'guess': 43
+}
+
+var validation = validate(subject, [
+  isTheUltimateAnswer('guess')
+]);
+```
+
+---
+
+## Validation Helpers
 Validation helpers are functions you can use to validate incoming request properties.
 
 property-validator relies on the super battle tested [validator.js](https://github.com/chriso/validator.js) library.
