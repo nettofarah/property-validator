@@ -14,13 +14,60 @@ npm install --save property-validator
 ## Usage
 property-validator provides a suite of `validate` and `assert` functions to make request validation simple and easy to write.
 
-`assert` functions halt the request handler's execution if one of the validation rules breaks.
+`assert` functions halt the programs's execution if one of the validation rules breaks.
+
+```javascript
+import { assert, presence, email } from 'property-validator';
+
+let user = {
+  username: 'nettofarah',
+  email_address: 'invalid@email'
+}
+
+assert(user, [
+  presence('username'),
+  email('email_address')
+]);
+
+// will throw a ValidationError
+
+// /Users/netto/projects/property-validator/lib/request_assertions.js:8
+//    throw new ValidationError(validation);
+```
 
 `validate` functions on the other hand, will return an object containing the result of all validations.
 
----
+```javascript
+import { validate, presence, email } from 'property-validator';
 
-## NodeJS
+let user = {
+  username: 'nettofarah',
+  email_address: 'invalid@email'
+}
+
+validate(user, [
+  presence('username'),
+  email('email_address')
+]);
+
+// returns
+{
+  valid: false,
+  errors :[
+    {
+      field: "email_address",
+      message: "\"email_address\" should look like an email address"
+    }
+  ],
+  messages: [
+    "\"email_address\" should look like an email address"
+  ]
+}
+```
+
+`property-validator` really shines when you combine it with web servers.
+
+## Usage in NodeJS
 
 You can run validations and assertions against the request `body`, `query`, `params` and `headers`, or against all of them at once using `assertAll` or `validateAll`.
 
