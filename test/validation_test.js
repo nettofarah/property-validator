@@ -337,4 +337,16 @@ describe('Validation Helpers', function() {
     f(v.isPlainObject('i')({ i: 'bla' }));
     m(v.isPlainObject('i')({ i: 'test' }), '"i" should be a plain object');
   });
+
+  it('isLength', function() {
+    t(v.isLength('i', {min: 9})({ i: 'something' }));
+    t(v.isLength('i', {max: 9})({ i: 'something' }));
+    t(v.isLength('i', {min: 9, max: 9})({ i: 'something' }));
+    f(v.isLength('i', {min: 10})({ i: 'something' }));
+    f(v.isLength('i', {max: 8})({ i: 'something' }));
+    f(v.isLength('i', {min: 10, max: 9})({ i: 'something' }));
+    m(v.isLength('i', {min: 10})({ i: 'something' }), '"i" length should be equals or greater then 10');
+    m(v.isLength('i', {max: 5})({ i: 'something' }), '"i" length should be equals or less then 5');
+    m(v.isLength('i', {min: 10, max: 5})({ i: 'something' }), '"i" length should be equals or greater then 10 and equals or less then 5');
+  })
 });

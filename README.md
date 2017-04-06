@@ -393,6 +393,7 @@ Here's a list of currently supported helpers:
 |isUUID(paramName [, version])| check if the string is a UUID (version 3, 4 or 5). |
 |matches(paramName, pattern [, modifiers])| check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`. |
 |isPlainObject(paramName)| check if the current param is a plain object. |
+| isLength(paramName, options) | check if the string's length falls in a range. Note: this function takes into account surrogate pairs. |
 
 ### Not currently supported
 These are a few other helpers avaliable in [validator.js](https://github.com/chriso/validator.js) that could be used in property-validator.
@@ -417,7 +418,6 @@ Feel free to submit a PR if you need any of these functions.
 | isISBN(paramName [, version]) | check if the string is an ISBN (version 10 or 13). |
 | isISIN(paramName) | check if the string is an [ISIN][ISIN] (stock/security identifier). |
 | isISO8601(paramName) | check if the string is a valid [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date. |
-| isLength(paramName, min [, max]) | check if the string's length falls in a range. Note: this function takes into account surrogate pairs. |
 | isLowercase(paramName) | check if the string is lowercase. |
 | isMACAddress(paramName) | check if the string is a MAC address. |
 | isMobilePhone(paramName, locale) | check if the string is a mobile phone number, (locale is one of `['zh-CN', 'zh-TW', 'en-ZA', 'en-AU', 'en-HK', 'pt-PT', 'fr-FR', 'el-GR', 'en-GB', 'en-US', 'en-ZM', 'ru-RU', 'nb-NO', 'nn-NO', 'vi-VN', 'en-NZ', 'en-IN']`). |
