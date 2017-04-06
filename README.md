@@ -1,4 +1,6 @@
 # property-validator
+[![Build Status](https://travis-ci.org/nettofarah/property-validator.svg?branch=master)](https://travis-ci.org/nettofarah/property-validator)
+
 :white_check_mark: Easy property validation for JavaScript, Node and Express
 
 Built on top of [validator.js](https://github.com/chriso/validator.js), property-validator makes validating request parameters easy and fun.
