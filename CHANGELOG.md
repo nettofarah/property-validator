@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0(Apr 5, 2017)
+### Added
+- [#14](https://github.com/nettofarah/property-validator/pull/14) `isLength` validation helper
+
 ## 0.6.0(Mar 16, 2016)
 ### Added
 - [#11](https://github.com/nettofarah/property-validator/pull/11) `isPlainObject` validation helper
