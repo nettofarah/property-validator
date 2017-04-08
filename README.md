@@ -336,7 +336,7 @@ function isTheUltimateAnswer(propertyName) {
   // actual object you want to validate
   return function(subject) {
     var value = subject[propertyName]
-    var isAwnser = value === 42
+    var isAnswer = value === 42
 
     // Make sure your function returns `result`, `message`
     // and `field`
