@@ -58,7 +58,7 @@ describe('Validation', function() {
     it('returns all the error messages', function() {
       assert.deepEqual(validation.messages, [
         '"password" required',
-        '"email" should look like an email address'
+        'The "email" must be a valid email address'
       ]);
     });
   });
@@ -345,8 +345,8 @@ describe('Validation Helpers', function() {
     f(v.isLength('i', {min: 10})({ i: 'something' }));
     f(v.isLength('i', {max: 8})({ i: 'something' }));
     f(v.isLength('i', {min: 10, max: 9})({ i: 'something' }));
-    m(v.isLength('i', {min: 10})({ i: 'something' }), '"i" length should be equals or greater then 10');
-    m(v.isLength('i', {max: 5})({ i: 'something' }), '"i" length should be equals or less then 5');
-    m(v.isLength('i', {min: 10, max: 5})({ i: 'something' }), '"i" length should be equals or greater then 10 and equals or less then 5');
+    m(v.isLength('i', {min: 10})({ i: 'something' }), 'The "i" length should be equal or greater then "10"');
+    m(v.isLength('i', {max: 5})({ i: 'something' }), 'The "i" length should be equal or less then "5"');
+    m(v.isLength('i', {min: 10, max: 5})({ i: 'something' }), 'The "i" length should be equal or greater then "10" and equal or less then "5"');
   })
 });

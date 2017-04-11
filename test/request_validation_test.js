@@ -73,7 +73,7 @@ function validation(title, validateFunction, property) {
       it('returns all the error messages', function() {
         assert.deepEqual(validation.messages, [
           '"password" required',
-          '"email" should look like an email address'
+          'The "email" must be a valid email address'
         ]);
       });
     });

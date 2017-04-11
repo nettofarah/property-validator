@@ -47,7 +47,7 @@ describe('Assertions', function() {
 
         var expectedError = {
           field: 'email_address',
-          message: '"email_address" should look like an email address'
+          message: 'The "email_address" must be a valid email address'
         }
 
         assert.equal(1, validationError.errors.length);
@@ -61,7 +61,7 @@ describe('Assertions', function() {
           email('email_address')
         ]);
       } catch(validationError) {
-        var message = '"email_address" should look like an email address';
+        var message = 'The "email_address" must be a valid email address';
 
         assert.deepEqual([message], validationError.messages);
       }
