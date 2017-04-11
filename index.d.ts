@@ -38,7 +38,7 @@ declare module 'property-validator' {
     }
 
     //request validators
-    export function validate(params: string[], validations: Validator[]): ValidateResult;
+    export function validate(subject: {}, string[], validations: Validator[]): ValidateResult;
     export function validateParams(request: { params: {} }, validations: Validator[]): ValidateResult;
     export function validateQuery(request: { query: {} }, validations: Validator[]): ValidateResult;
     export function validateBody(request: { body: {} }, validations: Validator[]): ValidateResult;
@@ -46,8 +46,7 @@ declare module 'property-validator' {
     export function validateAll(request: { query?: {}, params?: {}, body?: {} }, validations: Validator[]): ValidateResult;
 
     //request assertions
-    export function ensure(properties: {}, validations: Validator[], validationStrategy: () => ValidateResult): ValidateResult;
-    export function assert(properties: {}, validations: Validator[]): ValidateResult;
+    export function assert(subject: {}, validations: Validator[]): ValidateResult;
     export function assertHeaders(request: { headers: {} }, validations: Validator[]): ValidateResult;
     export function assertParams(request: { params: {} }, validations: Validator[]): ValidateResult;
     export function assertBody(request: { body: {} }, validations: Validator[]): ValidateResult;
