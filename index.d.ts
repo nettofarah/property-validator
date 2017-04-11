@@ -38,7 +38,7 @@ declare module 'property-validator' {
     }
 
     //request validators
-    export function validate(subject: {}, string[], validations: Validator[]): ValidateResult;
+    export function validate(subject: {}, validations: Validator[]): ValidateResult;
     export function validateParams(request: { params: {} }, validations: Validator[]): ValidateResult;
     export function validateQuery(request: { query: {} }, validations: Validator[]): ValidateResult;
     export function validateBody(request: { body: {} }, validations: Validator[]): ValidateResult;
@@ -63,14 +63,14 @@ declare module 'property-validator' {
     export function isAlphanumeric(paramName: string, customMessage?: string): Validator;
     export function isArray(paramName: string, customMessage?: string): Validator;
     export function isCreditCard(paramName: string, customMessage?: string): Validator;
-    export function isCurrency(paramName: string, options: ValidatorJS.IsCurrencyOptions, customMessage?: string): Validator;
+    export function isCurrency(paramName: string, options: IsCurrencyOptions, customMessage?: string): Validator;
     export function isDate(paramName: string, customMessage?: string): Validator;
     export function isDecimal(paramName: string, customMessage?: string): Validator;
-    export function isInt(paramName: string, options: ValidatorJS.IsIntOptions, customMessage?: string): Validator;
+    export function isInt(paramName: string, options: IsIntOptions, customMessage?: string): Validator;
     export function isJSON(paramName: string, customMessage?: string): Validator;
     export function isNull(paramName: string, customMessage?: string): Validator;
     export function isNumeric(paramName: string, customMessage?: string): Validator;
-    export function isURL(paramName: string, options: ValidatorJS.IsURLOptions, customMessage?: string): Validator;
+    export function isURL(paramName: string, options: IsURLOptions, customMessage?: string): Validator;
     export function isPlainObject(paramName: string, customMessage?: string): Validator;
 
     //same named (pair) validation functions

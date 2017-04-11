@@ -8,6 +8,28 @@ No chaining, no prototype violations, no magic. Just some simple, stateless, jav
 
 All you have to do is import some base validation functions and declare the validation rules for your request.
 
+## Table of contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Usage in NodeJS](#usage-in-nodejs)
+    - [Request Validation](#request-validation)
+        - [Request Parameters](#request-parameters)
+        - [Query String](#query-string)
+        - [Body](#body)
+        - [Headers](#headers)
+        - [Everything](#everything)
+        - [Assert Middleware](#assert-middleware)
+- [Advanced usage](#advanced-usage)
+    - [Optional Validation](#optional-validation)
+    - [Custom Error Messages](#custom-error-messages)
+    - [Custom Validation Functions](#custom-validation-functions)
+- [Validation Helpers](#validation-helpers)
+    - [Supported Helpers](#supported-helpers)
+    - [Not currently supported](#not-currently-supported)
+- [Usage with TypeScript](#usage-with-typescript)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Installation
 ```bash
 npm install --save property-validator
@@ -368,7 +390,7 @@ Validation helpers are functions you can use to validate incoming request proper
 
 property-validator relies on the super battle tested [validator.js](https://github.com/chriso/validator.js) library.
 
-#### Supported Helpers
+### Supported Helpers
 Here's a list of currently supported helpers:
 
 | Helper | Description |
@@ -395,7 +417,7 @@ Here's a list of currently supported helpers:
 |isUUID(paramName [, version])| check if the string is a UUID (version 3, 4 or 5). |
 |matches(paramName, pattern [, modifiers])| check if string matches the pattern. Either `matches('foo', /foo/i)` or `matches('foo', 'foo', 'i')`. |
 |isPlainObject(paramName)| check if the current param is a plain object. |
-| isLength(paramName, options) | check if the string's length falls in a range. Note: this function takes into account surrogate pairs. |
+|isLength(paramName, options) | check if the string's length falls in a range. Note: this function takes into account surrogate pairs. `options` is an object which can contain the keys `min` and/or `max` to check the integer is within boundaries (e.g. `{ min: 10, max: 99 }`). |
 
 ### Not currently supported
 These are a few other helpers avaliable in [validator.js](https://github.com/chriso/validator.js) that could be used in property-validator.
@@ -429,6 +451,10 @@ Feel free to submit a PR if you need any of these functions.
 | isUppercase(paramName) | check if the string is uppercase. |
 | isVariableWidth(paramName) | check if the string contains a mixture of full and half-width chars. |
 | isWhitelisted(paramName, chars) | checks characters if they appear in the whitelist. |
+
+## Usage with TypeScript
+
+There is no need to install additional type definitions for property-validator since it ships with TypeScript definition files.
 
 ## Contributing
 

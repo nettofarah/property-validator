@@ -35,6 +35,7 @@
     "supertest": "^1.1.0"
   },
   "dependencies": {
+    "@types/validator": "^6.2.0",
     "lodash": "^4.0.0",
     "validator": "^4.5.0"
   }
