@@ -37,6 +37,9 @@ declare module 'property-validator' {
         result: boolean;
     }
 
+    //function to change the locals, keeps a fallback to en locals
+    export function setLocals(locals: {});
+
     //request validators
     export function validate(subject: {}, validations: Validator[]): ValidateResult;
     export function validateParams(request: { params: {} }, validations: Validator[]): ValidateResult;

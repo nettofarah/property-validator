@@ -9,7 +9,7 @@ describe('Validation', function() {
   var params;
 
   before(function() {
-    params = {}
+    params = {};
   });
 
   it('runs validations on the request params', function() {
