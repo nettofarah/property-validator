@@ -8,10 +8,10 @@ declare module 'property-validator' {
     //result of a validation/assertion
     export type ValidateResult = {
         valid: boolean;
-        errors: {
+        errors: Array<{
             field: string;
             message: string;
-        };
+        }>;
         messages: string[]
     };
 
