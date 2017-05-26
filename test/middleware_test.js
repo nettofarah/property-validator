@@ -45,8 +45,8 @@ describe('Validation Middleware', function() {
 
         var expectedResponse = {
           errors: [
-            'The "username" is required',
-            'The "email_address" must be a valid email address'
+            '"username" required',
+            '"email_address" should look like an email address',
           ]
         };
 
@@ -58,7 +58,7 @@ describe('Validation Middleware', function() {
     var response = request(app).get('/hello');
     response.expect('Content-type', 'text/plain; charset=utf-8');
 
-    var expectedResponse = 'Invalid Request: The "username" is required, The "email_address" must be a valid email address';
+    var expectedResponse = 'Invalid Request: "username" required, "email_address" should look like an email address';
 
     response.expect(422, expectedResponse, done);
   });

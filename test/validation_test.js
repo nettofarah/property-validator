@@ -9,7 +9,7 @@ describe('Validation', function() {
   var params;
 
   before(function() {
-    params = {};
+    params = {}
   });
 
   it('runs validations on the request params', function() {
@@ -57,8 +57,8 @@ describe('Validation', function() {
 
     it('returns all the error messages', function() {
       assert.deepEqual(validation.messages, [
-        'The "password" is required',
-        'The "email" must be a valid email address'
+        '"password" required',
+        '"email" should look like an email address'
       ]);
     });
   });
@@ -136,7 +136,7 @@ describe('Validation', function() {
       assert(validation.errors.length == 1);
       assert.deepEqual({
         field: 'primary_cc',
-        message: 'The "primary_cc" must be a valid creditcard number'
+        message: '"primary_cc" should look like a credit card'
       }, validation.errors[0]);
     });
 
@@ -183,7 +183,7 @@ describe('Validation', function() {
       var expectedErrors = [
         { field: 'usd', message: 'Oops, this does not look like US dollars' },
         { field: 'brl', message: 'Reais are required to be prefixed with R$' },
-        { field: 'yen', message: 'The "yen" must be a valid currency' } // default error message
+        { field: 'yen', message: '"yen" should look like currency' } // default error message
       ];
 
       assert.deepEqual(expectedErrors, validation.errors);
@@ -271,7 +271,7 @@ describe('Validation Helpers', function() {
 
     m(
       v.oneOf('fruit', ['banana', 'apple'])({ fruit: 'grape' }),
-      'The "fruit" must be either of "banana, apple"'
+      '"fruit" should be one of [banana, apple]'
      )
   })
 
@@ -297,7 +297,7 @@ describe('Validation Helpers', function() {
     t(v.isArray('i')({ i: [1, 2, 3] }));
     f(v.isArray('i')({ i: 'bla' }));
 
-    m(v.isArray('i')({ i: 'test' }), 'The "i" must be an array');
+    m(v.isArray('i')({ i: 'test' }), '"i" should be an array');
   });
 
   it('isCreditCard', function() {
@@ -335,7 +335,7 @@ describe('Validation Helpers', function() {
   it('isPlainObject', function() {
     t(v.isPlainObject('i')({ i: { foo: true } }));
     f(v.isPlainObject('i')({ i: 'bla' }));
-    m(v.isPlainObject('i')({ i: 'test' }), 'The "i" must be a plain object');
+    m(v.isPlainObject('i')({ i: 'test' }), '"i" should be a plain object');
   });
 
   it('isLength', function() {
@@ -345,8 +345,8 @@ describe('Validation Helpers', function() {
     f(v.isLength('i', {min: 10})({ i: 'something' }));
     f(v.isLength('i', {max: 8})({ i: 'something' }));
     f(v.isLength('i', {min: 10, max: 9})({ i: 'something' }));
-    m(v.isLength('i', {min: 10})({ i: 'something' }), 'The "i" length must be equal or greater then "10"');
-    m(v.isLength('i', {max: 5})({ i: 'something' }), 'The "i" length must be equal or less then "5"');
-    m(v.isLength('i', {min: 10, max: 5})({ i: 'something' }), 'The "i" length must be equal or greater then "10" and equal or less then "5"');
+    m(v.isLength('i', {min: 10})({ i: 'something' }), '"i" length should be equals or greater then 10');
+    m(v.isLength('i', {max: 5})({ i: 'something' }), '"i" length should be equals or less then 5');
+    m(v.isLength('i', {min: 10, max: 5})({ i: 'something' }), '"i" length should be equals or greater then 10 and equals or less then 5');
   })
 });
