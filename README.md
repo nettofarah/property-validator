@@ -22,6 +22,7 @@ All you have to do is import some base validation functions and declare the vali
 - [Advanced usage](#advanced-usage)
     - [Optional Validation](#optional-validation)
     - [Custom Error Messages](#custom-error-messages)
+    - [Custom localization](#custom-localization)
     - [Custom Validation Functions](#custom-validation-functions)
 - [Validation Helpers](#validation-helpers)
     - [Supported Helpers](#supported-helpers)
@@ -347,6 +348,40 @@ var validation = validate(params, [
   isCurrency('rent', 'This does not look like money')
 ]);
 ```
+
+It is also possible to use some of the parameters of your validator in the error message.
+
+```javascript
+var validation = validate(params, [
+  presence('name', 'Oops, you forgot to tell us your :paramName'),
+  isLength('value', { min: 10, max: 99 }, 'The :paramName should be between :min and :max')
+]);
+
+//Oops, you forgot to tell us your name
+//The value should be between 10 and 99
+```
+
+### Custom localization
+It is possible to override the default locals. The locals is a simple object with keys refering to a validation function and there value the message.
+
+```javascript
+import { assert, presence, isLength, email, setLocals } from 'property-validator';
+setLocals({
+  required: 'Oops, you forgot to tell us your :paramName'
+});
+
+var validation = validate(params, [
+  presence('name'),
+  isLength('value', { min: 10, max: 99 }, 'The :paramName should be between :min and :max'),
+  email('email')
+]);
+
+//Oops, you forgot to tell us your name
+//The value should be between 10 and 99
+//"email" should look like an email address
+```
+As you can see all kind of combinations are possible. You can override the default locals and still set a custom message. 
+And if you neither supply a translation through the setLocals nor set a custom message, it will fall back to the default locals.
 
 ### Custom Validation Functions
 Writing your own validation functions is easy.
