@@ -13,8 +13,7 @@ describe('Translation', function() {
   });
 
   after(function() {
-    var defaultLocals = require('../lib/translations/en');
-    validator.setLocals(defaultLocals);
+    validator.restoreDefaultLocals();
   });
 
   it('allows overriding of custom message', function() {

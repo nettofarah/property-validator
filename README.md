@@ -383,6 +383,14 @@ var validation = validate(params, [
 As you can see all kind of combinations are possible. You can override the default locals and still set a custom message. 
 And if you neither supply a translation through the setLocals nor set a custom message, it will fall back to the default locals.
 
+If you would like to restore the locals to the default locals simply call `restoreDefaultLocals` like so:
+
+```javascript
+import { restoreDefaultLocals } from 'property-validator';
+
+restoreDefaultLocals();
+```
+
 ### Custom Validation Functions
 Writing your own validation functions is easy.
 
