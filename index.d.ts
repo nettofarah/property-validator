@@ -57,7 +57,7 @@ declare module 'property-validator' {
     export function assertAll(request: { query?: {}, params?: {}, body?: {} }, validations: Validator[]): ValidateResult;
 
     //special assert which makes a prop optional
-    export function optional(validation: Validator, customMessage?: string): Validator;
+    export function optional(validation: Validator): Validator;
 
     //validation functions
     export function presence(paramName: string, customMessage?: string): Validator;
