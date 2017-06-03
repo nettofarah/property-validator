@@ -103,8 +103,8 @@ declare module 'property-validator' {
     export function isISBN(paramName: string, version?: 10|13, customMessage?: string): Validator;
 
     //same named (pair) validation functions
-    export function email(paramName: string, customMessage?: string): Validator;
-    export function isEmail(paramName: string, customMessage?: string): Validator;
+    export function email(paramName: string, options?: IsEmailOptions, customMessage?: string): Validator;
+    export function isEmail(paramName: string, options?: IsEmailOptions, customMessage?: string): Validator;
     export function equals(paramName: string, comparison: string, customMessage?: string): Validator;
     export function isEqual(paramName: string, comparison: string, customMessage?: string): Validator;
     export function matches(paramName: string, pattern: RegExp | string, customMessage?: string): Validator;
