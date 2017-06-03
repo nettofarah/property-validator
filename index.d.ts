@@ -75,6 +75,32 @@ declare module 'property-validator' {
     export function isNumeric(paramName: string, customMessage?: string): Validator;
     export function isURL(paramName: string, options: IsURLOptions, customMessage?: string): Validator;
     export function isPlainObject(paramName: string, customMessage?: string): Validator;
+    export function isBoolean(paramName: string, customMessage?: string): Validator;
+    export function isAscii(paramName: string, customMessage?: string): Validator;
+    export function isBase64(paramName: string, customMessage?: string): Validator;
+    export function isFullWidth(paramName: string, customMessage?: string): Validator;
+    export function isHalfWidth(paramName: string, customMessage?: string): Validator;
+    export function isHexColor(paramName: string, customMessage?: string): Validator;
+    export function isHexadecimal(paramName: string, customMessage?: string): Validator;
+    export function isISIN(paramName: string, customMessage?: string): Validator;
+    export function isISO8601(paramName: string, customMessage?: string): Validator;
+    export function isLowercase(paramName: string, customMessage?: string): Validator;
+    export function isMACAddress(paramName: string, customMessage?: string): Validator;
+    export function isMongoId(paramName: string, customMessage?: string): Validator;
+    export function isMultibyte(paramName: string, customMessage?: string): Validator;
+    export function isSurrogatePair(paramName: string, customMessage?: string): Validator;
+    export function isUppercase(paramName: string, customMessage?: string): Validator;
+    export function isVariableWidth(paramName: string, customMessage?: string): Validator;
+    export function isDivisibleBy(paramName: string, number: number, customMessage?: string): Validator;
+    export function isBefore(paramName: string, date?: string, customMessage?: string): Validator;
+    export function isAfter(paramName: string, date?: string, customMessage?: string): Validator;
+    export function isMobilePhone(paramName: string, locale: string, customMessage?: string): Validator;
+    export function isWhitelisted(paramName: string, chars: string | string[], customMessage?: string): Validator;
+    export function isByteLength(paramName: string, options: IsByteLengthOptions, customMessage?: string): Validator;
+    export function isFQDN(paramName: string, options?: IsFQDNOptions, customMessage?: string): Validator;
+    export function isFloat(paramName: string, options?: IsFloatOptions, customMessage?: string): Validator;
+    export function isIP(paramName: string, version?: 4|6, customMessage?: string): Validator;
+    export function isISBN(paramName: string, version?: 10|13, customMessage?: string): Validator;
 
     //same named (pair) validation functions
     export function email(paramName: string, customMessage?: string): Validator;
