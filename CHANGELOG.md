@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0(Jun 3, 2017)
+### Added
+- [#18](https://github.com/nettofarah/property-validator/pull/18) Localization support
+- [#16](https://github.com/nettofarah/property-validator/pull/16) TypeScript typings
+
 ## 0.7.0(Apr 5, 2017)
 ### Added
 - [#14](https://github.com/nettofarah/property-validator/pull/14) `isLength` validation helper
