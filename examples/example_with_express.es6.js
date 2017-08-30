@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'
 
 import {
   assertAll,
@@ -7,41 +7,30 @@ import {
   presence,
   email,
   assertMiddleware
-} from '../index';
+} from '../index'
 
-const app = express();
+const app = express()
 
 app.get('/any-param', (req, res) => {
-  assertAll(req, [
-    presence('username'),
-    email('email_address')
-  ]);
+  assertAll(req, [presence('username'), email('email_address')])
 
-  res.status(200).json({ name: req.query.username });
-});
-
+  res.status(200).json({ name: req.query.username })
+})
 
 app.post('/body-params', (req, res) => {
-  assertBody(req, [
-    presence('username'),
-    email('email_address')
-  ]);
+  assertBody(req, [presence('username'), email('email_address')])
 
-  res.status(200).json({ name: req.query.username });
-});
-
+  res.status(200).json({ name: req.query.username })
+})
 
 app.get('/query-params', (req, res) => {
-  assertQuery(req, [
-    presence('username'),
-    email('email_address')
-  ]);
+  assertQuery(req, [presence('username'), email('email_address')])
 
-  res.status(200).json({ name: req.query.username });
-});
+  res.status(200).json({ name: req.query.username })
+})
 
-app.use(assertMiddleware);
+app.use(assertMiddleware)
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+app.listen(3000, function() {
+  console.log('Example app listening on port 3000!')
+})

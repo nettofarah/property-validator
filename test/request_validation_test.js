@@ -1,8 +1,8 @@
-var assert = require('assert');
+var assert = require('assert')
 
 var validator = require('../index')
-var email = validator.email;
-var presence = validator.presence;
+var email = validator.email
+var presence = validator.presence
 
 function fakeRequest() {
   return {
@@ -21,93 +21,92 @@ function fakeRequest() {
 //
 function validation(title, validateFunction, property) {
   describe(title, function() {
-    var req;
+    var req
 
     before(function() {
-      req = fakeRequest();
-    });
+      req = fakeRequest()
+    })
 
     it('runs validations on the request ' + title, function() {
       req[property] = {
         login: 'nettofarah',
         password: 'secret',
         email: 'nettofarah@gmail.com'
-      };
+      }
 
       var validation = validateFunction(req, [
         presence('login'),
         presence('password'),
         email('email')
-      ]);
+      ])
 
-      assert(validation.valid);
-      assert(validation.errors.length == 0);
-    });
+      assert(validation.valid)
+      assert(validation.errors.length == 0)
+    })
 
     describe('failed validations', function() {
-      var validation;
+      var validation
 
       before(function() {
         req[property] = {
           login: 'nettofarah',
           email: 'nettofarahatgmail.com'
-        };
+        }
 
         validation = validateFunction(req, [
           presence('login'),
           presence('password'),
           email('email')
-        ]);
-      });
+        ])
+      })
 
       it('only passes if all validations pass', function() {
-        assert(validation.valid == false);
-      });
+        assert(validation.valid == false)
+      })
 
       it('returns all failed validations', function() {
-        assert(validation.errors.length == 2);
-        assert(validation.errors[0].field == 'password');
-        assert(validation.errors[1].field == 'email');
-      });
+        assert(validation.errors.length == 2)
+        assert(validation.errors[0].field == 'password')
+        assert(validation.errors[1].field == 'email')
+      })
 
       it('returns all the error messages', function() {
         assert.deepEqual(validation.messages, [
           '"password" required',
           '"email" should look like an email address'
-        ]);
-      });
-    });
-  });
+        ])
+      })
+    })
+  })
 }
 
-validation('Body Validation', validator.validateBody, 'body');
-validation('Params Validation', validator.validateParams, 'params');
-validation('Query String Validation', validator.validateQuery, 'query');
-validation('Headers Validation', validator.validateHeaders, 'headers');
+validation('Body Validation', validator.validateBody, 'body')
+validation('Params Validation', validator.validateParams, 'params')
+validation('Query String Validation', validator.validateQuery, 'query')
+validation('Headers Validation', validator.validateHeaders, 'headers')
 
 describe('Validate all', function() {
-
   it('validates all properties across body, query and params', function() {
-    var req = fakeRequest();
+    var req = fakeRequest()
 
     req.body = {
       password: 'secret'
-    };
+    }
 
     req.query = {
       email: 'nettofarah@gmail.com'
-    };
+    }
 
     req.params = {
       login: 'nettofarah'
-    };
+    }
 
     var validation = validator.validateAll(req, [
       presence('password'),
       email('email'),
       presence('login')
-    ]);
+    ])
 
-    assert(validation.valid);
-  });
-});
+    assert(validation.valid)
+  })
+})

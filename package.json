@@ -6,7 +6,8 @@
   "types": "./index.d.ts",
   "homepage": "http://github.com/nettofarah/property-validator",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha test/"
+    "test": "./node_modules/mocha/bin/mocha test/",
+    "precommit": "lint-staged"
   },
   "bugs": {
     "url": "https://github.com/nettofarah/property-validator/issues"
@@ -31,12 +32,21 @@
   "license": "MIT",
   "devDependencies": {
     "express": "^4.13.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.4",
     "mocha": "^2.3.4",
+    "prettier": "^1.6.1",
     "supertest": "^1.1.0"
   },
   "dependencies": {
     "@types/validator": "^6.2.0",
     "lodash": "^4.0.0",
     "validator": "^4.5.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
