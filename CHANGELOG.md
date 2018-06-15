@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.3(Jun 15, 2018)
+### Fixed
+- [#25](https://github.com/nettofarah/property-validator/pull/25) index.d.ts: add void return type to setLocals
+
+
 ## 0.8.0(Jun 3, 2017)
 ### Added
 - [#18](https://github.com/nettofarah/property-validator/pull/18) Localization support
