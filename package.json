@@ -32,6 +32,7 @@
   "author": "Netto Farah",
   "license": "MIT",
   "devDependencies": {
+    "@types/validator": "^9.4.2",
     "express": "^4.13.3",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.4",
@@ -40,9 +41,8 @@
     "supertest": "^1.1.0"
   },
   "dependencies": {
-    "@types/validator": "^6.2.0",
     "lodash": "^4.0.0",
-    "validator": "^4.5.0"
+    "validator": "^10.8.0"
   },
   "lint-staged": {
     "*.js": [
