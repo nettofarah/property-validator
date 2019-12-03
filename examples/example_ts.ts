@@ -1,8 +1,4 @@
-import validator from 'property-validator'
-
-const presence = validator.presence
-const email = validator.email
-const assert = validator.assert
+import { assert, email, presence } from 'property-validator'
 
 const user = {
   username: 'nettofarah',
