@@ -1,6 +1,6 @@
 {
   "name": "property-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easy property validation for JavaScript, Node and Express.",
   "main": "index.js",
   "types": "./index.d.ts",
