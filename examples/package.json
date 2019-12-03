@@ -6,15 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["test"],
+  "keywords": [
+    "test"
+  ],
   "author": "Netto Farah",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
-    "lodash": "^4.0.1"
+    "lodash": "^4.0.1",
+    "property-validator": "file:./../"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
-    "babel-preset-es2015": "^6.3.13"
+    "babel-preset-es2015": "^6.3.13",
+    "typescript": "^3.7.2"
   }
 }
