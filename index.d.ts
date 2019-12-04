@@ -1,6 +1,8 @@
 /// <reference types="validator" />
 
 declare module 'property-validator' {
+  import validator from 'validator'
+
   //middleware
   export function assertMiddleware(
     err: Error,
@@ -201,16 +203,15 @@ declare module 'property-validator' {
     customMessage?: string
   ): Validator
 
-  //export ValidatorJS options interfaces
-  export interface IsByteLengthOptions
-    extends ValidatorJS.IsByteLengthOptions {}
-  export interface IsCurrencyOptions extends ValidatorJS.IsCurrencyOptions {}
-  export interface IsEmailOptions extends ValidatorJS.IsEmailOptions {}
-  export interface IsFQDNOptions extends ValidatorJS.IsFQDNOptions {}
-  export interface IsFloatOptions extends ValidatorJS.IsFloatOptions {}
-  export interface IsIntOptions extends ValidatorJS.IsIntOptions {}
-  export interface IsLengthOptions extends ValidatorJS.IsLengthOptions {}
-  export interface IsURLOptions extends ValidatorJS.IsURLOptions {}
+  //export validator options interfaces
+  export interface IsByteLengthOptions extends validator.IsByteLengthOptions {}
+  export interface IsCurrencyOptions extends validator.IsCurrencyOptions {}
+  export interface IsEmailOptions extends validator.IsEmailOptions {}
+  export interface IsFQDNOptions extends validator.IsFQDNOptions {}
+  export interface IsFloatOptions extends validator.IsFloatOptions {}
+  export interface IsIntOptions extends validator.IsIntOptions {}
+  export interface IsLengthOptions extends validator.IsLengthOptions {}
+  export interface IsURLOptions extends validator.IsURLOptions {}
   export interface NormalizeEmailOptions
-    extends ValidatorJS.NormalizeEmailOptions {}
+    extends validator.NormalizeEmailOptions {}
 }
